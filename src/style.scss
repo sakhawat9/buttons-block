@@ -1,12 +1,125 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
+.wp-block-create-block-blockbutton {
 
-.wp-block-create-block-boilerplate {
-	background-color: #21759b;
-	color: #fff;
-	padding: 2px;
+	&.is-style-squared {
+		border-radius: 0 !important;
+	}
+
+	&.is-style-rounded {
+		border-radius: 7px !important;
+	}
+
+	&.has-shadow {
+		box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+
+		&.shadow-opacity-10 {
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.1) !important;
+		}
+
+		&.shadow-opacity-20 {
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.2) !important;
+		}
+
+		&.shadow-opacity-30 {
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.3) !important;
+		}
+
+		&.shadow-opacity-40 {
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.4) !important;
+		}
+	}
+
+	.block-button-align-right {
+		text-align: right;
+	}
+
+	.block-button-align-center {
+		text-align: center;
+	}
+
+	.block-button-align-left {
+		text-align: left;
+	}
+
+	&.block-button-wrapper {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-top: 15px;
+		margin-bottom: 15px;
+	}
+
+	.block-button-title {
+		margin: 0;
+		flex-grow: 1;
+	}
+
+	span {
+		font-size: inherit;
+		width: auto;
+		height: auto;
+	}
+
+	&.has-button-magenta-background-color button {
+		background-color: #a156b4;
+	}
+
+	&.has-button-magenta-color button {
+		color: #a156b4;
+	}
+
+	&.has-button-blue-background-color button {
+		background-color: #3182ce;
+	}
+
+	&.has-button-blue-color button {
+		color: #3182ce;
+	}
+
+	&.has-button-pink-background-color button {
+		background-color: #d53f8c;
+	}
+
+	&.has-button-pink-color button {
+		color: #d53f8c;
+	}
+
+	&.has-button-gray-background-color button {
+		background-color: #1a202c;
+	}
+
+	&.has-button-gray-color button {
+		color: #1a202c;
+	}
+
+	&.has-button-orange-background-color button {
+		background-color: #ed8936;
+	}
+
+	&.has-button-orange-color {
+		color: #ed8936;
+	}
+
+	&.has-button-white-background-color button {
+		background-color: #fff;
+	}
+
+	&.has-button-white-color button {
+		color: #fff;
+	}
+
+	&.has-red-to-blue-gradient-background button {
+		background: linear-gradient(135deg, #e4064d 0%, #2c59ee 100%);
+	}
+
+	&.has-green-to-yellow-gradient-background button {
+		background: linear-gradient(135deg, #3ce406 0%, #d6e029 100%);
+	}
+
+	&.has-green-to-blue-gradient-background button {
+		background: linear-gradient(135deg, #3ce406 0%, #3182ce 100%);
+	}
+
+	&.has-orange-to-pink-gradient-background button {
+		background: linear-gradient(135deg, #ed8936 0%, #d53f8c 100%);
+	}
 }
