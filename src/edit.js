@@ -68,11 +68,7 @@ export default function Edit( props ) {
 					onChange={ onChangeAlignment }
 				/>
 			</BlockControls>
-			<div
-				{ ...useBlockProps( {
-					className: classes,
-				} ) }
-			>
+			<div>
 				<RichText
 					{ ...useBlockProps( {
 						className: classes,

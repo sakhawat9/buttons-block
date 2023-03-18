@@ -1,4 +1,4 @@
-.wp-block-create-block-blockbutton {
+.wp-block-create-block-button {
 
 	&.is-style-squared {
 		border-radius: 0 !important;
@@ -51,6 +51,10 @@
 	.block-button-title {
 		margin: 0;
 		flex-grow: 1;
+		border: none;
+		padding: 15px 20px;
+		border-radius: 40px;
+		cursor: pointer;
 	}
 
 	span {
@@ -59,39 +63,39 @@
 		height: auto;
 	}
 
-	&.has-button-magenta-background-color button {
+	&.has-button-magenta-background-color {
 		background-color: #a156b4;
 	}
 
-	&.has-button-magenta-color button {
+	&.has-button-magenta-color {
 		color: #a156b4;
 	}
 
-	&.has-button-blue-background-color button {
+	&.has-button-blue-background-color {
 		background-color: #3182ce;
 	}
 
-	&.has-button-blue-color button {
+	&.has-button-blue-color {
 		color: #3182ce;
 	}
 
-	&.has-button-pink-background-color button {
+	&.has-button-pink-background-color {
 		background-color: #d53f8c;
 	}
 
-	&.has-button-pink-color button {
+	&.has-button-pink-color {
 		color: #d53f8c;
 	}
 
-	&.has-button-gray-background-color button {
+	&.has-button-gray-background-color {
 		background-color: #1a202c;
 	}
 
-	&.has-button-gray-color button {
+	&.has-button-gray-color {
 		color: #1a202c;
 	}
 
-	&.has-button-orange-background-color button {
+	&.has-button-orange-background-color {
 		background-color: #ed8936;
 	}
 
@@ -99,27 +103,27 @@
 		color: #ed8936;
 	}
 
-	&.has-button-white-background-color button {
+	&.has-button-white-background-color {
 		background-color: #fff;
 	}
 
-	&.has-button-white-color button {
+	&.has-button-white-color {
 		color: #fff;
 	}
 
-	&.has-red-to-blue-gradient-background button {
+	&.has-red-to-blue-gradient-background {
 		background: linear-gradient(135deg, #e4064d 0%, #2c59ee 100%);
 	}
 
-	&.has-green-to-yellow-gradient-background button {
+	&.has-green-to-yellow-gradient-background {
 		background: linear-gradient(135deg, #3ce406 0%, #d6e029 100%);
 	}
 
-	&.has-green-to-blue-gradient-background button {
+	&.has-green-to-blue-gradient-background {
 		background: linear-gradient(135deg, #3ce406 0%, #3182ce 100%);
 	}
 
-	&.has-orange-to-pink-gradient-background button {
+	&.has-orange-to-pink-gradient-background {
 		background: linear-gradient(135deg, #ed8936 0%, #d53f8c 100%);
 	}
 }
