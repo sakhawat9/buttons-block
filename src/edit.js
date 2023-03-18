@@ -33,6 +33,7 @@ export default function Edit( props ) {
 		'has-shadow': shadow,
 		[ `shadow-opacity-${ shadowOpacity }` ]: shadow && shadowOpacity,
 	} );
+
 	const textClasses = classnames(
 		`block-button-title`,
 		`block-button-align-${ textAlignment }`
@@ -71,9 +72,8 @@ export default function Edit( props ) {
 			<div>
 				<RichText
 					{ ...useBlockProps( {
-						className: classes,
+						className: `${ classes } ${ textClasses }`,
 					} ) }
-					className={ textClasses }
 					onChange={ onChangeText }
 					value={ text }
 					placeholder={ __( 'Hello World!', 'block-button' ) }

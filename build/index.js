@@ -87,9 +87,8 @@ function Edit(props) {
     value: textAlignment,
     onChange: onChangeAlignment
   })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
-    className: classes
+    className: `${classes} ${textClasses}`
   }), {
-    className: textClasses,
     onChange: onChangeText,
     value: text,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hello World!', 'block-button'),
@@ -167,9 +166,8 @@ function save(_ref) {
   });
   const textClasses = classnames__WEBPACK_IMPORTED_MODULE_3___default()(`block-button-title`, `block-button-align-${textAlignment}`);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
-    className: classes
+    className: `${classes} ${textClasses}`
   }), {
-    className: textClasses,
     tagName: "button",
     value: text
   })));

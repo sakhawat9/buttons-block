@@ -14,8 +14,9 @@ export default function save( { attributes } ) {
 	return (
 		<div>
 			<RichText.Content
-				{ ...useBlockProps.save( { className: classes } ) }
-				className={ textClasses }
+				{ ...useBlockProps.save( {
+					className: `${ classes } ${ textClasses }`,
+				} ) }
 				tagName="button"
 				value={ text }
 			/>
