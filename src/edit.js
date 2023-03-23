@@ -5,14 +5,26 @@ import {
 	BlockControls,
 	AlignmentToolbar,
 	InspectorControls,
+	URLInput,
 } from '@wordpress/block-editor';
 import classnames from 'classnames';
 import './editor.scss';
-import { PanelBody, RangeControl } from '@wordpress/components';
+import { IconButton, PanelBody, RangeControl } from '@wordpress/components';
+
+const { SelectControl } = wp.components;
 
 export default function Edit( props ) {
-	const { attributes, setAttributes } = props;
-	const { text, textAlignment, shadow, shadowOpacity } = attributes;
+	const { attributes, isSelected, setAttributes } = props;
+	const {
+		buttonSize,
+		borderRadius,
+		text,
+		textAlignment,
+		shadow,
+		links,
+		shadowOpacity,
+		buttonUrl,
+	} = attributes;
 
 	const onChangeAlignment = ( newAlignment ) => {
 		setAttributes( { textAlignment: newAlignment } );
@@ -22,6 +34,9 @@ export default function Edit( props ) {
 	};
 	const toggleShadow = () => {
 		setAttributes( { shadow: ! shadow } );
+	};
+	const toggleLinks = () => {
+		setAttributes( { links: ! links } );
 	};
 	const onChangeShadowOpacity = ( newShadowOpacity ) => {
 		setAttributes( {
@@ -38,6 +53,22 @@ export default function Edit( props ) {
 		`block-button-title`,
 		`block-button-align-${ textAlignment }`
 	);
+	const buttonSizeOptions = [
+		{ value: 'size-small', label: __( 'Small' ) },
+		{ value: 'size-normal', label: __( 'Normal' ) },
+		{ value: 'size-medium', label: __( 'Medium' ) },
+		{ value: 'size-large', label: __( 'Large' ) },
+		{ value: 'size-extra-large', label: __( 'Extra Large' ) },
+	];
+	const borderRadiusOptions = [
+		{ value: 'border-radius-squared', label: __( 'Squared' ) },
+		{ value: 'border-radius-rounded', label: __( 'Rounded' ) },
+		{ value: 'border-radius-circular', label: __( 'Circular' ) },
+		{
+			value: 'border-radius-extra-circular',
+			label: __( 'Extra Circular' ),
+		},
+	];
 	return (
 		<>
 			<InspectorControls>
@@ -53,6 +84,34 @@ export default function Edit( props ) {
 						/>
 					</PanelBody>
 				) }
+				<PanelBody title={ 'Button Style' } initialOpen={ false }>
+					<SelectControl
+						label={ __( 'Button Size' ) }
+						value={ buttonSize }
+						options={ buttonSizeOptions.map(
+							( { value, label } ) => ( {
+								value,
+								label,
+							} )
+						) }
+						onChange={ ( newSize ) => {
+							setAttributes( { buttonSize: newSize } );
+						} }
+					/>
+					<SelectControl
+						label={ __( 'Border Radius' ) }
+						value={ borderRadius }
+						options={ borderRadiusOptions.map(
+							( { value, label } ) => ( {
+								value,
+								label,
+							} )
+						) }
+						onChange={ ( newSize ) => {
+							setAttributes( { borderRadius: newSize } );
+						} }
+					/>
+				</PanelBody>
 			</InspectorControls>
 			<BlockControls
 				controls={ [
@@ -62,6 +121,12 @@ export default function Edit( props ) {
 						onClick: toggleShadow,
 						isActive: shadow,
 					},
+					{
+						icon: 'admin-links',
+						title: __( 'Links', 'block-button' ),
+						onClick: toggleLinks,
+						isActive: links,
+					},
 				] }
 			>
 				<AlignmentToolbar
@@ -69,17 +134,39 @@ export default function Edit( props ) {
 					onChange={ onChangeAlignment }
 				/>
 			</BlockControls>
-			<div>
+			<div className="button-wrapper">
 				<RichText
 					{ ...useBlockProps( {
-						className: `${ classes } ${ textClasses }`,
+						className: `${ classes } ${ textClasses } ${ buttonSize } ${ borderRadius }`,
 					} ) }
 					onChange={ onChangeText }
 					value={ text }
 					placeholder={ __( 'Hello World!', 'block-button' ) }
-					tagName="button"
+					tagName="a"
 					allowedFormats={ [] }
+					isSelected={ isSelected }
 				/>
+				{ links && (
+					<div className={ `bk-btn-form` }>
+						<form
+							onSubmit={ ( event ) => event.preventDefault() }
+							className={ `bk-button bk-button-dual` }
+						>
+							<URLInput
+								className="button-url"
+								value={ buttonUrl }
+								onChange={ ( value ) =>
+									setAttributes( { buttonUrl: value } )
+								}
+							/>
+							<IconButton
+								icon="editor-break"
+								label={ __( 'Apply' ) }
+								type="submit"
+							/>
+						</form>
+					</div>
+				) }
 			</div>
 		</>
 	);

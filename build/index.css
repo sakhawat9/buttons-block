@@ -5,6 +5,29 @@
   box-sizing: border-box;
 }
 
+.button-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.bk-btn-form {
+  position: absolute;
+  top: 40px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 10px;
+  z-index: 999;
+}
+.bk-btn-form form {
+  display: flex;
+  align-items: center;
+}
+.bk-btn-form form input {
+  border: 1px solid #a8a8a8 !important;
+  border-radius: 5px !important;
+}
+
 .block-button-title {
   border: none;
   cursor: pointer;

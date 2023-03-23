@@ -1,7 +1,16 @@
 import { useBlockProps, RichText } from '@wordpress/block-editor';
 import classnames from 'classnames';
 export default function save( { attributes } ) {
-	const { text, textAlignment, shadow, shadowOpacity } = attributes;
+	const {
+		buttonSize,
+		borderRadius,
+		text,
+		textAlignment,
+		shadow,
+		shadowOpacity,
+		buttonTarget,
+		buttonUrl,
+	} = attributes;
 
 	const classes = classnames( `block-button-wrapper`, {
 		'has-shadow': shadow,
@@ -15,10 +24,13 @@ export default function save( { attributes } ) {
 		<div>
 			<RichText.Content
 				{ ...useBlockProps.save( {
-					className: `${ classes } ${ textClasses }`,
+					className: `${ classes } ${ textClasses } ${ buttonSize } ${ borderRadius }`,
 				} ) }
-				tagName="button"
+				tagName="a"
+				rel="noopener noreferrer"
 				value={ text }
+				target={ buttonTarget ? '_blank' : '_self' }
+				href={ buttonUrl }
 			/>
 		</div>
 	);

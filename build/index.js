@@ -31,16 +31,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+const {
+  SelectControl
+} = wp.components;
 function Edit(props) {
   const {
     attributes,
+    isSelected,
     setAttributes
   } = props;
   const {
+    buttonSize,
+    borderRadius,
     text,
     textAlignment,
     shadow,
-    shadowOpacity
+    links,
+    shadowOpacity,
+    buttonUrl
   } = attributes;
   const onChangeAlignment = newAlignment => {
     setAttributes({
@@ -57,6 +65,11 @@ function Edit(props) {
       shadow: !shadow
     });
   };
+  const toggleLinks = () => {
+    setAttributes({
+      links: !links
+    });
+  };
   const onChangeShadowOpacity = newShadowOpacity => {
     setAttributes({
       shadowOpacity: newShadowOpacity
@@ -67,6 +80,35 @@ function Edit(props) {
     [`shadow-opacity-${shadowOpacity}`]: shadow && shadowOpacity
   });
   const textClasses = classnames__WEBPACK_IMPORTED_MODULE_4___default()(`block-button-title`, `block-button-align-${textAlignment}`);
+  const buttonSizeOptions = [{
+    value: 'size-small',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Small')
+  }, {
+    value: 'size-normal',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Normal')
+  }, {
+    value: 'size-medium',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Medium')
+  }, {
+    value: 'size-large',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Large')
+  }, {
+    value: 'size-extra-large',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Extra Large')
+  }];
+  const borderRadiusOptions = [{
+    value: 'border-radius-squared',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Squared')
+  }, {
+    value: 'border-radius-rounded',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Rounded')
+  }, {
+    value: 'border-radius-circular',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Circular')
+  }, {
+    value: 'border-radius-extra-circular',
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Extra Circular')
+  }];
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.Fragment, null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.InspectorControls, null, shadow && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow Setting', 'button')
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.RangeControl, {
@@ -76,25 +118,87 @@ function Edit(props) {
     max: 40,
     step: 10,
     onChange: onChangeShadowOpacity
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.PanelBody, {
+    title: 'Button Style',
+    initialOpen: false
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Button Size'),
+    value: buttonSize,
+    options: buttonSizeOptions.map(_ref => {
+      let {
+        value,
+        label
+      } = _ref;
+      return {
+        value,
+        label
+      };
+    }),
+    onChange: newSize => {
+      setAttributes({
+        buttonSize: newSize
+      });
+    }
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(SelectControl, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Border Radius'),
+    value: borderRadius,
+    options: borderRadiusOptions.map(_ref2 => {
+      let {
+        value,
+        label
+      } = _ref2;
+      return {
+        value,
+        label
+      };
+    }),
+    onChange: newSize => {
+      setAttributes({
+        borderRadius: newSize
+      });
+    }
   }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.BlockControls, {
     controls: [{
       icon: 'admin-page',
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Shadow', 'block-button'),
       onClick: toggleShadow,
       isActive: shadow
+    }, {
+      icon: 'admin-links',
+      title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Links', 'block-button'),
+      onClick: toggleLinks,
+      isActive: links
     }]
   }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.AlignmentToolbar, {
     value: textAlignment,
     onChange: onChangeAlignment
-  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
-    className: `${classes} ${textClasses}`
+  })), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: "button-wrapper"
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.RichText, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.useBlockProps)({
+    className: `${classes} ${textClasses} ${buttonSize} ${borderRadius}`
   }), {
     onChange: onChangeText,
     value: text,
     placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Hello World!', 'block-button'),
-    tagName: "button",
-    allowedFormats: []
-  }))));
+    tagName: "a",
+    allowedFormats: [],
+    isSelected: isSelected
+  })), links && (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", {
+    className: `bk-btn-form`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("form", {
+    onSubmit: event => event.preventDefault(),
+    className: `bk-button bk-button-dual`
+  }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_3__.URLInput, {
+    className: "button-url",
+    value: buttonUrl,
+    onChange: value => setAttributes({
+      buttonUrl: value
+    })
+  }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__.IconButton, {
+    icon: "editor-break",
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Apply'),
+    type: "submit"
+  })))));
 }
 
 /***/ }),
@@ -155,10 +259,14 @@ function save(_ref) {
     attributes
   } = _ref;
   const {
+    buttonSize,
+    borderRadius,
     text,
     textAlignment,
     shadow,
-    shadowOpacity
+    shadowOpacity,
+    buttonTarget,
+    buttonUrl
   } = attributes;
   const classes = classnames__WEBPACK_IMPORTED_MODULE_3___default()(`block-button-wrapper`, {
     'has-shadow': shadow,
@@ -166,10 +274,13 @@ function save(_ref) {
   });
   const textClasses = classnames__WEBPACK_IMPORTED_MODULE_3___default()(`block-button-title`, `block-button-align-${textAlignment}`);
   return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.RichText.Content, (0,_babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0__["default"])({}, _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save({
-    className: `${classes} ${textClasses}`
+    className: `${classes} ${textClasses} ${buttonSize} ${borderRadius}`
   }), {
-    tagName: "button",
-    value: text
+    tagName: "a",
+    rel: "noopener noreferrer",
+    value: text,
+    target: buttonTarget ? '_blank' : '_self',
+    href: buttonUrl
   })));
 }
 
@@ -360,7 +471,7 @@ function _extends() {
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse('{"apiVersion":2,"name":"block-course/buttons","version":"0.1.0","title":"Buttons","category":"design","icon":"button","description":"Block for showing button","keywords":["block","button","buttons"],"supports":{"html":false,"color":{"background":true,"text":true,"gradients":true},"spacing":{"padding":true,"margin":true},"typography":{"fontSize":true}},"styles":[{"name":"squared","label":"Squared","isDefault":true},{"name":"rounded","label":"Rounded"}],"example":{"attributes":{"text":"This is some text!","gradient":"red-to-blue","shadow":true}},"textdomain":"button","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"text":{"type":"string","source":"html","selector":"button"},"textAlignment":{"type":"string","default":"left"},"shadow":{"type":"boolean","default":false},"shadowOpacity":{"type":"number","default":30},"style":{"type":"object","margin":"value","default":{}}}}');
+module.exports = JSON.parse('{"apiVersion":2,"name":"block-course/buttons","version":"0.1.0","title":"Buttons","category":"design","icon":"button","description":"Block for showing button","keywords":["block","button","buttons"],"supports":{"html":false,"color":{"background":true,"text":true,"hover":true,"gradients":true},"spacing":{"padding":true,"margin":true},"typography":{}},"styles":[],"example":{"attributes":{"text":"This is some text!","gradient":"red-to-blue","shadow":true,"links":true}},"textdomain":"button","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","attributes":{"text":{"type":"string","source":"html","selector":"button"},"buttonSize":{"type":"string","default":"size-normal"},"borderRadius":{"type":"string","default":"border-radius-rounded"},"textAlignment":{"type":"string","default":"left"},"buttonUrl":{"type":"string","source":"attribute","selector":"a","attribute":"href"},"buttonTarget":{"type":"boolean","default":false},"shadow":{"type":"boolean","default":false},"links":{"type":"boolean","default":false},"shadowOpacity":{"type":"number","default":30},"style":{"type":"object","margin":"value","default":{}}}}');
 
 /***/ })
 

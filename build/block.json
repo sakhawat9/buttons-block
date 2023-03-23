@@ -16,32 +16,22 @@
     "color": {
       "background": true,
       "text": true,
+      "hover": true,
       "gradients": true
     },
     "spacing": {
       "padding": true,
       "margin": true
     },
-    "typography": {
-      "fontSize": true
-    }
+    "typography": {}
   },
-  "styles": [
-    {
-      "name": "squared",
-      "label": "Squared",
-      "isDefault": true
-    },
-    {
-      "name": "rounded",
-      "label": "Rounded"
-    }
-  ],
+  "styles": [],
   "example": {
     "attributes": {
       "text": "This is some text!",
       "gradient": "red-to-blue",
-      "shadow": true
+      "shadow": true,
+      "links": true
     }
   },
   "textdomain": "button",
@@ -54,11 +44,33 @@
       "source": "html",
       "selector": "button"
     },
+    "buttonSize": {
+      "type": "string",
+      "default": "size-normal"
+    },
+    "borderRadius": {
+      "type": "string",
+      "default": "border-radius-rounded"
+    },
     "textAlignment": {
       "type": "string",
       "default": "left"
     },
+    "buttonUrl": {
+      "type": "string",
+      "source": "attribute",
+      "selector": "a",
+      "attribute": "href"
+    },
+    "buttonTarget": {
+      "type": "boolean",
+      "default": false
+    },
     "shadow": {
+      "type": "boolean",
+      "default": false
+    },
+    "links": {
       "type": "boolean",
       "default": false
     },
